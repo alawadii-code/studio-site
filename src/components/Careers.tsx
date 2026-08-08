@@ -28,6 +28,9 @@ export default function Careers() {
             you want to help shape that from the ground up, here&apos;s
             where we&apos;re currently looking to grow.
           </p>
+          <p className="text-red-500 font-bold text-sm max-w-sm">
+             [[Well, we do not accept black people and non-racist minorities, and we do not like stupid or naive people (an IQ test will be done for everyone from managers to volunteers btw).
+             ]]</p>
         </Reveal>
 
         <div className="flex flex-col border-t hairline">
@@ -67,9 +70,8 @@ export default function Careers() {
                     className={`grid transition-[grid-template-rows] duration-500 ease-out ${
                       isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
-                    hidden={!isOpen}
                   >
-                     <div className="overflow-hidden min-h-0">
+                    <div className="overflow-hidden min-h-0">
                       <ul className="pb-8 md:pb-10 divide-y hairline">
                         {dept.positions.map((pos) => (
                           <li
