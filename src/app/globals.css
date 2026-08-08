@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-charcoal: var(--charcoal);
+  --color-ash: var(--ash);
+  --color-mist: var(--mist);
+  --color-ember: var(--ember);
+  --font-display: var(--font-display-family);
+  --font-body: var(--font-body-family);
+}
+
+:root {
+  --ink: #0a0a0a;       /* near-black background */
+  --paper: #ededea;     /* off-white text/foreground */
+  --charcoal: #151513;  /* raised panels */
+  --ash: #2a2a26;       /* borders / dividers */
+  --mist: #8a8a82;      /* secondary text */
+  --ember: #c17a3f;     /* the one accent — used sparingly */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Signature: film-grain atmosphere overlay ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Reveal-on-scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hairline {
+  border-color: var(--ash);
+}
+
+::selection {
+  background: var(--ember);
+  color: var(--ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ash);
+}
+
+/* ---------- Placeholder art tile (used until real assets are added) ---------- */
+.art-placeholder {
+  position: relative;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      var(--charcoal) 0px,
+      var(--charcoal) 2px,
+      #111110 2px,
+      #111110 4px
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.art-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--ash);
+}
