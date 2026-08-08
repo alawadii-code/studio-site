@@ -6,7 +6,7 @@ import Reveal from "./Reveal";
 import ApplicationModal from "./ApplicationModal";
 
 export default function Careers() {
-  const [openDept, setOpenDept] = useState<string | null>(departments[0]?.slug ?? null);
+  const [openDept, setOpenDept] = useState<string | null>(null);
   const [applying, setApplying] = useState<{ department: string; position: string } | null>(
     null
   );
@@ -28,6 +28,9 @@ export default function Careers() {
             you want to help shape that from the ground up, here&apos;s
             where we&apos;re currently looking to grow.
           </p>
+          <p className="text-red-500 font-bold text-sm max-w-sm">
+             [[Well, we do not accept black people and non-racist minorities, and we do not like stupid or naive people (an IQ test will be done for everyone from managers to volunteers btw).
+             ]]</p>
         </Reveal>
 
         <div className="flex flex-col border-t hairline">
@@ -64,11 +67,11 @@ export default function Careers() {
                   </button>
 
                   <div
-                    className={`grid transition-all duration-500 ease-out overflow-hidden ${
-                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    className={`grid transition-[grid-template-rows] duration-500 ease-out ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
                   >
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden min-h-0">
                       <ul className="pb-8 md:pb-10 divide-y hairline">
                         {dept.positions.map((pos) => (
                           <li
