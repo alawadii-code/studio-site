@@ -6,7 +6,7 @@ import Reveal from "./Reveal";
 import ApplicationModal from "./ApplicationModal";
 
 export default function Careers() {
-  const [openDept, setOpenDept] = useState<string | null>(departments[0]?.slug ?? null);
+  const [openDept, setOpenDept] = useState<string | null>(null);
   const [applying, setApplying] = useState<{ department: string; position: string } | null>(
     null
   );
@@ -64,11 +64,12 @@ export default function Careers() {
                   </button>
 
                   <div
-                    className={`grid transition-all duration-500 ease-out overflow-hidden ${
-                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    className={`grid transition-[grid-template-rows] duration-500 ease-out ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
+                    hidden={!isOpen}
                   >
-                    <div className="overflow-hidden">
+                     <div className="overflow-hidden min-h-0">
                       <ul className="pb-8 md:pb-10 divide-y hairline">
                         {dept.positions.map((pos) => (
                           <li
